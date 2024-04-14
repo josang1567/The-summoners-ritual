@@ -9,11 +9,7 @@ using static MonsterGeneration;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject HeadsPanel;
-    public GameObject EyesPanel;
-    public GameObject BodysPanel;
-    public GameObject ArmsPanel;
-    public GameObject LegsPanel;
+   
     public GameObject[] drops;
     public GameObject Summon;
     public GameObject Cauldron;
@@ -38,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip splash;
+
+    public GameObject particle;
 
     private void Start()
     {
@@ -149,8 +147,10 @@ public class GameManager : MonoBehaviour
                 IngredientsText.GetComponent<TMP_Text>().text = "Here is the demon you have summoned";
                 DestroyButtons();
 
+                particle.SetActive(true);
 
                 Cauldron.SetActive(false);
+                IngredientsText.SetActive(true);
 
                 Instantiate(Summon, SummonPoint.transform.position, SummonPoint.transform.rotation);
                 foreach (var item in captureButtons)
@@ -240,6 +240,7 @@ public class GameManager : MonoBehaviour
             item.SetActive(false);
         }
         IngredientsText.SetActive(false);
+        particle.SetActive(false);
         string route = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
 
 
